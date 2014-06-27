@@ -1,0 +1,28 @@
+body {
+    
+}
+
+.divMain{width:95%;height:auto;margin:0px auto;border:0px solid red;margin-top:10px;}
+.divContent{width:95%;height:auto;margin:0px auto;border:0px solid red;margin-top:50px}
+
+.textBox
+{
+    width:100%;height:45px;border:1px solid #ccc;border-radius:2px;margin-top:8px;color:#3D1414;
+}
+
+.regTextBox{width:100%;border-radius:2px;margin-top:8px;border:1px solid #808080}
+.button{width:100%;margin-top:20px;}
+
+/*for placeholder*/
+::-webkit-input-placeholder { color:#808080;font-size:12px;line-height:30px;}
+::-moz-placeholder { color:#f00; } /* firefox 19+ */
+:-ms-input-placeholder { color:#f00; } /* ie */
+input:-moz-placeholder { color:#f00; }
+
+@font-face{
+    font-family:myfont;
+    src:url(blood_donnar/styles/font/Arialic_Hollow.ttf);
+}
+
+
+.k-calendar .k-state-selected { background: blue; }
