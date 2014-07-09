@@ -1,6 +1,6 @@
 [
-	{ "stateid": 1, "statename": "Andhra Pradesh"},
-    { "stateid": 2, "statename": "Maharashtra" },
-	{ "stateid": 3, "statename": "Uttar Pradesh"},
-	{ "stateid": 4, "statename": "Punjab" }
+	{ "stateid": "Andhra Pradesh", "statename": "Andhra Pradesh"},
+    { "stateid": "Maharashtra", "statename": "Maharashtra" },
+	{ "stateid": "Uttar Pradesh", "statename": "Uttar Pradesh"},
+	{ "stateid": "Punjab", "statename": "Punjab" }
 ]

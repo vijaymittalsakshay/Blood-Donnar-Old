@@ -39,7 +39,7 @@
 #friendsApp.km-flat .km-navbar,
 #friendsApp.km-flat .km-content {
     border: 0 none;
-    background-color: #2d3e50;
+    /*background-color: #2d3e50;*/
     color: #fff;
     font-family: "Open Sans", sans-serif;
 }

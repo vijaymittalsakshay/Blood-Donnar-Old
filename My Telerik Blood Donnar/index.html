@@ -14,21 +14,16 @@
     <link href="blood_donnar/styles/main2.css" rel="stylesheet"/>
 
     <script src="cordova.js"></script>
-    <script src="kendo/js/kendo.mobile.min.js"></script>
+<!--<script src="kendo/js/kendo.mobile.min.js"></script>-->
     <script src="kendo/js/jquery.min.js"></script>
     <script src="kendo/js/kendo.all.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
 
     <!--Local JS File-->
     <script src="blood_donnar/scripts/lib/min/everlive.all.min.js"></script>
-   <script src="blood_donnar/scripts/app/myApp.js"></script>
-   <script src="blood_donnar/scripts/app/myLogin.js"></script>
-    <!-- <script src="blood_donnar/scripts/app/mySignup.js"></script>
-    <script src="blood_donnar/scripts/app/setting.js"></script>-->
-   <!--  <script src="scripts/app.js"></script>
-    <script src="scripts/login.js"></script>-->
-    <script src="scripts/location.js"></script>
-    <script src="scripts/weather.js"></script>
+    <script src="blood_donnar/scripts/app/myApp.js"></script>
+    <script src="blood_donnar/scripts/app/myLogin.js"></script>
+    <script src="blood_donnar/scripts/app/myRegister.js"></script>
     <style>
       /*  #login .km-content{background-image:url('blood donnar/images/Heartinhands-638x425.jpg');background-repeat:no-repeat;background-size:100% 100%;}*/
           #login .km-content
@@ -46,270 +41,179 @@
 </head>
 <body id="friendsApp">
     
-    <!--This is Login View Page-->
-    <div data-role="view" id="login" data-id="blood-donnar" data-model="app.loginService.viewModel">
+ <!--This is Login View Page-->
+    <div data-role="view" id="login" data-id="blood-donnar" data-model="app.Login">
         <div class="divMain">
             <div style="width:72%;height:auto;margin:0px auto;margin-top:55px;color:#007A29;font-size:35px;">
                 <span>Blood Donnar</span>
             </div>
-            <form id="login-form" data-bind="events:{key:checkEnter}">
+            <form id="login-form" data-bind="events: { keyup: checkEnter }">
                 <div class="divContent">
                     <label>
-                        <input type="text" name="Username" placeholder="username" data-bind="value:Username" class="k-textbox textBox" style="height:38px;"/>
+                        <input type="text" name="Username" id="LoginUsername" placeholder="username" data-bind="value:Username" class="k-textbox textBox" style="height:38px;"/>
                     </label>
                     <label>
-                        <input type="password" name="Password" placeholder="Password" data-bind="value:Password" class="k-textbox textBox" style="height:38px;"/>
+                        <input type="password" name="Password" id="LoginPassword" placeholder="Password" data-bind="value:Password" class="k-textbox textBox" style="height:38px;"/>
                     </label>
                     <span>
-                        <a data-role="button" class="k-button button" data-bind="click:onlogin" style="height:38px;background-color:#002E5C;filter:alpha(opacity=80);opacity:0.8;color:white;border-radius:10px;">Log In</a>
+                        <a data-role="button" class="k-button button" data-bind="click:login" style="height:38px;background-color:#002E5C;filter:alpha(opacity=80);opacity:0.8;color:white;border-radius:5px;">Log In</a>
                     </span>
                      <span>
-                        <a data-role="button" href="#modalviewLost" data-rel="modalview" class="k-button button" style="height:38px;background-color:#002E5C;filter:alpha(opacity=80);opacity:0.8;color:white;border-radius:10px;;margin-top:10px;">Forgot password</a>
+                        <a data-role="button" href="#modalviewLost" data-rel="modalview" class="k-button button" style="height:38px;background-color:#002E5C;filter:alpha(opacity=80);opacity:0.8;color:white;border-radius:5px;;margin-top:10px;">Forgot password</a>
                     </span>
                 </div>
             </form>
-            <div style="width:78%;height:25px;margin:0px auto;font-size:17px;margin-top:40px;color:">
+            <div style="width:78%;height:25px;margin:0px auto;font-size:17px;margin-top:60px;color:">
                 <span>Don't have an account? <a href="#signup" style="text-decoration:none;color:blue;font-weight:bold;">Signup</a></span>
             </div>
         </div>
-        <div class="divMain" data-role="touch" data-tap="">
-            <a data-role="button" class="k-button button" style="background-color:#002E5C;filter:alpha(opacity=80);opacity:0.8;color:white;border-radius:10px;">Login With Facebook</a>
+        <div class="divMain" style="width:90%;height:30px;">
+           <!-- <a data-role="button" id="fb" class="k-button button" style="background-color:#002E5C;filter:alpha(opacity=80);opacity:0.8;color:white;border-radius:5px;" data-bind="click:facebook">Login With Facebook</a>-->
         </div>
     </div>
     
-    <!-- This is a Forgot Password View Page-->
+<!-- This is a Forgot Password View Page-->
     <div data-role="modalview" id="modalviewLost" style="width:90%;height:190px;">
 	        <div data-role="header">
-                <div data-role="navbar" style="background-color:white;">
-                    <span style="font-size:14px;color:black">Forgot Password</span>
+                <div data-role="navbar" style="background-color:#313D47;">
+                    <span style="font-size:14px;color:white">Forgot Password</span>
                 </div>
             </div>
        <div style="width:90%;height:120px;margin:0px auto;margin-top:12px;">
            <table width="100%" align="center">
                <tbody>
                    <tr>
-                       <td colspan="2" align="center" height="60px"><input type="text" id="userid" data-bind="value:forgottext" class="k-textbox" style="width:100%;height:35px;border:1px solid #ccc;border-radius:10px;padding-left:8px" placeholder="Recovery Email Address"></td>
+                       <td colspan="2" align="center" height="60px"><input type="text" id="userid" data-bind="value:recover" class="k-textbox" style="width:100%;height:35px;border:1px solid #ccc;border-radius:2px;padding-left:8px" placeholder="Recovery Email Address"></td>
                    </tr>
                    <tr>
-                       <td width="50%" align="left"><a data-role="button" data-bind="click:forgotSubmit" style="width:90%;height:30px;text-align:center;background-color:#19FFD1;color:">Submit</a></td>
-                       <td width="50%" align="right"> <a data-role="button" data-click="closeModalView" style="width:90%;height:30px;text-align:center;background-color:#19FFD1;color:">Cancel</a></td>
+                       <td width="50%" align="left"><a data-role="button" data-bind="click:onForgot" style="width:90%;height:30px;text-align:center;background-color:#002E5C;color:">Submit</a></td>
+                       <td width="50%" align="right"> <a data-role="button" data-click="closeModalView" style="width:90%;height:30px;text-align:center;background-color:#002E5C;color:">Cancel</a></td><!--background-color:#19FFD1-->
                    </tr>
                </tbody>
            </table>
        </div>
     </div>
     
-    <!--This is a Registration View Page-->
-    <div data-role="view" id="signup" data-title="Signup" data-id="blood-donnar" data-init="init" data-show="show">
+<!--This is a Registration View Page-->
+    <div data-role="view" id="signup" data-title="Signup" data-id="blood-donnar" data-model="app.Register" data-init="app.Register.init" data-show="app.Register.show">
         <!--Header-->
         <div data-role="header">
             <div data-role="navbar" style="background-color:#313D47;color:white">
                 <a data-role="backbutton" data-align="left">Back</a>
-                <span data-role="view-title" style="font-size:15px;"></span>
+                <span data-role="view-title" style="font-size:15px;color:yellow"></span>
+                <a data-role="button" data-align="right" data-bind="click:signup" style="background-color:">Register</a>
             </div>
         </div>
         <form id="signUp-form">
-            <div id="signUp" style="width:80%;height:auto;margin:0px auto;margin-top:10px;border:0px solid red;">
-                <input type="text" name="Name" id="Name" class="k-textbox" data-bind="value:DisplayName" placeholder="Your Name" style="width:100%;height:32px;margin-top:8px;"/><br>
-                <input type="email" name="Email" id="Email" class="k-textbox" data-bind="value:Email" placeholder="Email Address" style="width:100%;height:32px;margin-top:8px;"/><br>
-                <input type="text" name="Username" id="Username" class="k-textbox" data-bind="value:Username" placeholder="Username" style="width:100%;height:32px;margin-top:8px;"/><br>
-                <input type="password" name="Password" id="Password" class="k-textbox" data-bind="value:Password" placeholder="Password" style="width:100%;height:32px;margin-top:8px;"/><br>
-                <select class="k-textbox" id="blood_group" data-bind="value:blood_Group" style="margin-top:8px;height:32px;width:100%;font-size:12px;">
-                        <option value="0">Select Blood Group</option>
-                        <option value="1">O-pos</option>
-                        <option value="2">O-neg</option>
-                        <option value="3">A-pos</option>
-                        <option value="4">A-neg</option>
-                        <option value="5">B-pos</option>
-                        <option value="6">B-neg</option>
-                        <option value="7">AB-pos</option>
-                        <option value="8">AB-neg</option>
-                        <option value="9">A1-pos</option>
-                        <option value="10">A1-neg</option>
-                        <option value="11">A2-pos</option>
-                        <option value="12">A2-neg</option>
-                        <option value="13">A1B-pos</option>
-                        <option value="14">A1B-neg</option>
-                        <option value="15">A2B-pos</option>
-                        <option value="16">A2B-neg</option>
-                </select><br>
-                <select class="k-textbox" id="gender" data-bind="value:Gender" style="margin-top:8px;height:35px;width:100%;font-size:12px;margin-bottom:8px;">
-                        <option value="0">Select Gender</option>
-                        <option value="1">Male</option>
-                        <option value="2">Female</option>
-                </select>
-                <input id="datepicker" data-bind="value:DOB" style="width:100%;height:32px;"/><br>
-                <input type="text" name="Age" id="Age" class="k-textbox" data-bind="value:Age" placeholder="Age" style="width:100%;height:32px;margin-top:8px;" disabled/><br>
-                <input id="categories" class="k-textbox" data-bind="value:State" style="width:100%;margin-top:8px;font-size:13px;"/><br>
-                <input id="products" data-bind="value:City" style="width:100%;margin-top:8px;font-size:13px;"/><br>
-                 <input type="text" data-bind="value:PinCode" name="Pincode" id="Pincode" placeholder="City Pin Code" class="k-textbox" style="height:32px;width:100%;margin-top:8px;margin-bottom:12px;" disabled/>
+            <div id="signUp" style="width:80%;height:auto;margin:0px auto;margin-top:8px;border:0px solid red;">
+                <input type="text" name="Name" id="Name" class="k-textbox regTextbox" data-bind="value:DisplayName" placeholder="Your Name" style="margin-top:5px;height:35px;"  required/><br>
+                <input type="email" name="Email" id="Email" class="k-textbox regTextbox" data-bind="value:Email" placeholder="Email Address" style="height:35px;" required/><br>
+                <input type="text" name="Username" id="Username" class="k-textbox regTextbox" data-bind="value:Username" placeholder="Username" style="height:35px;" required/><br>
+                <input type="password" name="Password" id="Password" class="k-textbox regTextbox" data-bind="value:Password" placeholder="Password" style="height:35px;" required/><br>
                 
+                <select class="k-textbox regTextbox" id="blood_group" data-bind="value:bloodGroup" style="font-size:12px;height:35px;" required>
+                        <option value="0">Select Blood Group</option>
+                        <option value="O Pos">O-pos</option>
+                        <option value="O Neg">O-neg</option>
+                        <option value="A Pos">A-pos</option>
+                        <option value="A Neg">A-neg</option>
+                        <option value="B Pos">B-pos</option>
+                        <option value="B Neg">B-neg</option>
+                        <option value="AB Pos">AB-pos</option>
+                        <option value="AB Neg">AB-neg</option>
+                </select><br>
+                <select class="k-textbox regTextbox" id="gender" data-bind="value:Gender" style="font-size:12px;height:35px;margin-bottom:6px;" required>
+                        <option value="0">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                </select>
+                <input id="datepicker" data-bind="value:DOB" style="width:100%;height:30px;font-size:13px;" required/><br>
+                <input type="text" name="Age" id="Age" class="k-textbox regTextbox" data-bind="value:Age" placeholder="Age" style="margin-top:8px;height:35px;" disabled/><br>
+                <input id="categories" class="k-textbox regTextbox" data-bind="value:State" style="font-size:13px;" required/><br>
+                <input id="products" data-bind="value:City" class="k-textbox regTextbox" style="font-size:13px;" required/><br>
+                 <input type="number" data-bind="value:PinCode" name="Pincode" id="Pincode" placeholder="City Pin Code" class="k-textbox regTextbox" style="margin-bottom:8px;height:35px;" required/>
             </div>
-           <!-- <a data-role="button" data-bind="click:signup">Click</a>-->
         </form>
-        <div id="signupBtnWrp"  class="signup-btn-wrp disabled" data-role="touch" data-tap="hello" style="width:80%;height:auto;margin:0px auto;margin-top:15px;border:0px solid red;margin-bottom:15px;">
-              <a data-role="button" class="btn btn-signup" data-click="signup"  style="width:100%;height:45px;text-align:center;line-height:25px;border-radius:10px;">Register</a>
-        </div>
     </div>  
     
+    
+    <!--
+    
+     <div id="signupBtnWrp"  class="signup-btn-wrp disabled" data-role="touch" data-tap="hello" style="width:80%;height:auto;margin:0px auto;margin-top:15px;border:0px solid red;margin-bottom:15px;">
+              <a data-role="button" class="btn btn-signup" data-bind=""  style="width:100%;height:40px;text-align:center;line-height:20px;border-radius:10px;">Register</a>
+        </div>
+    
+    <div id="signupBtnWrp" style="width:80%;height:auto;margin:0px auto;margin-top:15px;border:0px solid red;margin-bottom:15px;">
+              <a data-role="button" data-bind="click:signup"  style="width:100%;height:45px;text-align:center;line-height:25px;border-radius:10px;background-color:#002E5C;">Register</a>
+        </div>
+    	
+    -->
     <!--Initialize the mobile app-->
     <script>
        // var app = new kendo.mobile.Application(document.body,{transition:'slide',skin:'flat',layout:'blood-donnar'});
-        var el = new Everlive({
-            apiKey: 'T7iAL9sN4cf2dDeI', // Put your Backend Services API key here
-        	scheme: 'http'
-        })
+        
         
         function closeModalView() {
         $("#modalviewLost").kendoMobileModalView("close");
    	 }
     </script>
+    
+    <!--This is a Date of birth script code-->
     <script>
          $(document).ready(function(){
-            $("#datepicker").kendoDatePicker({
-            animation:{
-                close:{
-                    effects: "fadeOut zoom:out",
-         		   duration: 600
+            $("#datepicker").kendoDateTimePicker({
+                animation:{
+                    close:{
+                        effects: "fadeOut zoom:out",
+             		   duration: 600
+                    },
+                    open:{
+                         effects: "fadeIn zoom:in",
+             		    duration: 600
+                    }
                 },
-                open:{
-                     effects: "fadeIn zoom:in",
-         		    duration: 600
-                }
-            },
-            format:"dd/MM/yyyy",
-            min:new Date(1900,0,1),
-            max:new Date(),
+                format: "yyyy/MM/dd hh:mm tt",
+                parseFormats: ["MMMM yyyy", "HH:mm"],
+                min:new Date(1900,0,1),
+                max:new Date(),
                 change:onChange
        	 });
             
             function onChange()
             {
-                var DOB = this.value();
-                var CDATE = new Date();
-                var DIFF = ((CDATE-DOB)/1000/60/60/24);
                 
-                var MONTH = parseInt(DIFF/30);
-                var DAYS = DIFF%30;
-               // alert(DAYS);
-                var YEAR = parseInt(MONTH/12);
-                var yy = MONTH%12;
-                
-                var valueOfDob = YEAR+" Year ,"+yy+" Month and "+parseInt(DAYS)+" days";
-                //alert(valueOfDob);
-                if(DOB>CDATE){
-                    navigator.notification.alert("Select valid date of birth",setValue,"Date of birth","OK");
-                }
-                else
-                {
-                    $("#Age").val(valueOfDob);
-                }
             }
         });
     </script>
     <script>
-      /*  $(document).ready(function(){
-            $("#dob").kendoDatePicker({
-            	format:"dd/MM/yyyy",
-                  animation: {
-               			close: {
-                				 effects: "fadeOut zoom:out",
-                 				duration: 900
-              				 },
-              			 open: {
-                				 effects: "fadeIn zoom:in",
-                				 duration: 900
-              				 }
-            			  },
-                 min:new Date(1900,0,1),
-           	  max:new Date()
-            });
-        });*/
-    </script>
-    <script>
-        $(document).ready(function() {
-                $("#categories").kendoDropDownList({
-                   optionLabel: "Select state...",
-                   dataTextField: "statename",
-                   dataValueField: "stateid",
-                   dataSource: {
-                   	transport:{
-                       		read:{
-                                    url:"blood_donnar/data/stateData.json",
-                                    dataType:"json"
-                                   }
-                               }
-                             }
-                         }).data("kendoDropDownList");
-
-				$("#products").kendoDropDownList({
-                   autoBind: false,
-                   cascadeFrom: "categories",
-                   optionLabel: "Select City...",
-                   dataTextField: "cityname",
-                   dataValueField: "cityid",
-                   	dataSource: {
-                               transport:{
-                                    	read:{
-                                            url:"blood_donnar/data/cityData.json",
-                                            dataType:"json"
-                                          }
-                                       }
-                                   }
-                          }).data("kendoDropDownList");
-                });
+        
     </script>
 </body>
  <!---------------SRIPT CODE PLACE HERE------------------------------------------------------------------------------------------------------->   
+   <!--/*
+    ******
+    ******
+    */-->
+ <!----------------This is a Login Script code using Everlive lib and with the use of Telerik backend Service-------------------------------------------------------------------------------------->
    
     <script>
-      /*  function show()
-        {
-             dataSource = kendo.observable({
-                Username: '',
-                Password: '',
-                DisplayName: '',
-                Email: '',
-                Gender: '0',
-                Blood_Group: '',
-                State: '',
-                DOB: '',
-                Age:'',
-                City:'',
-                PinCode:''
-            });
-            kendo.bind($('#signUp'), dataSource, kendo.mobile.ui);
-            }
-        
-        function init()
-        {
-             $signUpForm = $('#signUp-form');
-                $formFields = $signUpForm.find('input, select');
-                $signupBtnWrp = $('#signupBtnWrp');
-                validator = $signUpForm.kendoValidator({ validateOnBlur: false }).data('kendoValidator');
+            /*function My_Login(){
+                var username = $("#LoginUsername").val();
+            	var password = $("#LoginPassword").val();
 
-                $formFields.on('keyup keypress blur change input', function () {
-                    if (validator.validate()) {
-                        $signupBtnWrp.removeClass('disabled');
-                    } else {
-                        $signupBtnWrp.addClass('disabled');
-                    }
-                });
-        }
-        
-        function signup(){
-            el.Users.register(
-                    dataSource.Username,
-                    dataSource.Password,
-                    dataSource)
+                // Authenticate using the username and password
+                el.Users.login(username, password)
                 .then(function () {
-                    app.showAlert("Registration successful");
-                    app.application.navigate('#login');
-                },
-                function (err) {
-                    app.showError(err.message);
-                });
-        }
-        */
+
+                    app.application.navigate('views/Home.html');
+                })
+                .then(null,
+                      function (err) {
+                         
+                          navigator.notification.alert(err.message, function(){}, 'Login', 'OK');
+                      }
+                )
+            }*/
     </script>
 </html>
+
